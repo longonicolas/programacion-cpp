@@ -25,7 +25,7 @@ int main(){
 	return 0;
 }
 
-nodo* cargarNombre(char nombre[], int largoNombre){
+/*nodo* cargarNombre(char nombre[], int largoNombre){
 	
 	nodo* pila = NULL;
 	int i;
@@ -34,7 +34,7 @@ nodo* cargarNombre(char nombre[], int largoNombre){
 		push(pila,nombre[i]);
 		}
 	return pila;
-}
+}*/
 
 //otra forma
 

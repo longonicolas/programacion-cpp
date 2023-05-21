@@ -51,9 +51,16 @@ recorridoVehiculoSospechoso recorrido(vehiculoSospechoso vehiculo, vectorDeRecor
 		while(aux1 != NULL){
 			
 			if(strcmp(vehiculo.patente,aux1->info.patente) == 0){
+				if(strcmp(aux1->info.horaDeRegistro,vehiculo.horaDelito) > 0){
 					strcpy(a.nombreZona,vec[i].nombreZona);
 					strcpy(a.horaDeRegistro,aux1->info.horaDeRegistro);
 					insertarOrdenado(sospechoso.nodo,a); //inserta por hora de registro
+					}
+				else{
+					strcpy(a.nombreZona,vec[i].nombreZona);
+					strcpy(a.horaDeRegistro,"-1");
+					insertarOrdenado(sospechoso.nodo,a);
+					}
 				}
 			aux1 = aux1->sgte;
 			}

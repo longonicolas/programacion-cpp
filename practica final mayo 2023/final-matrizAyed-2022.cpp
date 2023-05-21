@@ -18,18 +18,19 @@ void situacionAcademicaDelCurso(int matrizCurso[][7], tipoVector vec[]){
 		strcpy(vector[i].nombreYApellido, vec[i].nombreYApellido);
 		
 		
-		if( (matrizCurso[i][0] >= 8 && matrizCurso[i][1] >= 8) || (matrizCurso[i][0] >= 8 && matrizCurso[i][1] < 8 && matrizCurso[i][3] >= 8) || (matrizCurso[i][0] < 8 && matrizCurso[i][1] >= 8 && matrizCurso[i][2] >= 8) ){
+		if( (matrizCurso[i][0] >= 8 && matrizCurso[i][1] >= 8) || 
+		    (matrizCurso[i][0] >= 8 && matrizCurso[i][1] < 8 && matrizCurso[i][3] >= 8) || 
+		    (matrizCurso[i][0] < 8 && matrizCurso[i][1] >= 8 && matrizCurso[i][2] >= 8) ){
 			strcpy(vector[i].situacionAcademica,"Promocionado");
 			}
 		
-		else if( (matrizCurso[i][0] >= 6 || matrizCurso[i][2] >= 6 || matrizCurso[i][4] >= 6) && (matrizCurso[i][1] >= 6 || matrizCurso[i][3] >= 6 || matrizCurso[i][5] >= 6) && (matrizCurso[i][6] >= 6) ){
-			
-			strcpy(vector[i].situacionAcademica,"Regularizado");
-		}
+		else if( (matrizCurso[i][0] >= 6 || matrizCurso[i][2] >= 6 || matrizCurso[i][4] >= 6) && 
+		         (matrizCurso[i][1] >= 6 || matrizCurso[i][3] >= 6 || matrizCurso[i][5] >= 6) && (matrizCurso[i][6] >= 6) ){
+					strcpy(vector[i].situacionAcademica,"Regularizado");
+				}
 		else{
 			strcpy(vector[i].situacionAcademica,"No aprobado");
-
-		}
+			}
 		//ahora tengo un vector de 60 posiciones con los nombres y situacion academica de todos los alumnos del curso, solo queda ordenarlo por nombre 
 		
 		vectorSituaciones aux;
@@ -37,14 +38,14 @@ void situacionAcademicaDelCurso(int matrizCurso[][7], tipoVector vec[]){
 		for(i=0; i<(60-1); i++){
 			for(j=0; j<(60-1)-i; j++){
 				
-				if(strcmp(vector[j+1].nombreYApellido, vector[j].nombreYApellido) > 0 ){
+				if(strcmp(vector[j+1].nombreYApellido, vector[j].nombreYApellido) < 0 ){
 					
 					aux = vector[j+1];
 					vector[j+1] = vector[j];
 					vector[j] = aux;
+					}
 				}
 			}
-		}
 		
 		
 	}
