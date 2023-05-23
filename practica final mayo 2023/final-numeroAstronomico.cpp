@@ -63,3 +63,53 @@ pilaAstronomica* sumarNumeros(pilaAstronomica* a, pilaAstronomica* b){
 	
 	return c;
 }
+
+-------------------------------------
+
+struct nodo{
+	
+	tipoGenerico info;
+	nodo* sgte;
+};
+
+nodo* insertarOrdenado(nodo*&, tipoGenerico);
+//nodo* buscar(nodo*, tipoGenerico);
+//nodo* insertarSinRepetir(nodo*&, tipoGenerico);
+//void push(nodo*&, tipoGenerico);
+//tipoGenerico pop(nodo*&);
+
+nodo* apareo(nodo* l1, nodo* l2){
+	
+	nodo* l3 = NULL;
+	nodo* aux1 = l1;
+	nodo* aux2 = l2;
+	tipoGenerico a;
+	
+	while(aux1 != NULL && aux2 != NULL){
+		
+		bool x = esMenor(aux1->info, aux2->info);
+		
+		if(x){
+			a = aux1->info;
+			insertarOrdenado(l3,a);
+			aux1 = aux1->sgte;
+			}
+		else{
+			a = aux2->info;
+			insertarOrdenado(l3,a);
+			aux2 = aux2->sgte;
+			}	
+		}
+		
+	while(aux1 != NULL){
+		a = aux1->info;
+		insertarOrdenado(l3,a);
+		aux1 = aux1->sgte;
+		}
+	while(aux2 != NULL){
+		a = aux2->info;
+		insertarOrdenado(l3,a);
+		aux2 = aux2->sgte;
+		}
+	return l3;
+}
