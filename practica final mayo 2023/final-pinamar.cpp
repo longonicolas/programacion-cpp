@@ -48,10 +48,11 @@ int llenarMatriz(FILE* archivo, vector vec[]){
 void imprimirResultados(int matriz[][5], vector vec[]){
 	
 	int totalVotos = 0;
+	float porcentaje;
 	int votos[5];
 	
-	int listaConMasVotos = 0;
-	int segundaListaConMasVotos = 0;
+	int listaConMasVotos = 0; int nroListaConMasVotos = 0;
+	int segundaListaConMasVotos = 0; int nroSegundaListaConMasVotos = 0;
 	for(int i=0; i<5; i++){
 		votos[i] = 0;
 		}
@@ -67,19 +68,27 @@ void imprimirResultados(int matriz[][5], vector vec[]){
 	for(int i=0; i<5; i++){
 		cout<<"Total votos lista "<<i+1<<": "<<votos[i];
 		
-		if(vec[i] > listaConMasVotos){
-			listaConMasVotos = vec[i];
-			segundaListaConMasVotos = listaConMasVotos;
+		porcentaje = (votos[i] / totalVotos) * 100;
+		cout<<"Porcentaje de la lista respecto al total de votos: "<<porcentaje<<"%";
+		
+		if(votos[i] > listaConMasVotos){
+			segundaListaConMasVotos = listaConMasVotos; nroSegundaListaConMasVotos = nroListaConMasVotos;			
+			listaConMasVotos = votos[i]; nroListaConMasVotos = i+1;
 			}
 			
-		else if()
-		
+		else if(votos[i] > segundaListaConMasVotos && votos[i] <= listaConMasVotos)
+			segundaListaConMasVotos = votos[i];
+			nroSegundaListaConMasVotos = i+1;
 		}
 	cout<<"Total votos validos: "<<totalVotos;
 	
-	for(int i=0; i<5; i++){
-		for(int j=0; j<5; j++){
-			
-			}
+	float porcentajeL1 = (listaConMasVotos/totalVotos) * 100;
+	float porcentajeL2 = (segundaListaConMasVotos/totalVotos) * 100;
+	if(porcentajeL1 > 50 || porcentajeL1 - porcentajeL2 >= 10){
+		cout<<"lista ganadora: "<<nroListaConMasVotos;
 		}
+	else{
+		cout << "Listas que pasan a balotaje: " << nroListaConMasVotos << " " << nroSegundaListaConMasVotos;
+		}
+
 }
